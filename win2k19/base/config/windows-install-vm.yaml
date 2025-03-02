@@ -68,9 +68,9 @@ spec:
     spec:
       pvc:
         accessModes:
-        - ReadWriteMany
+        - ReadWriteOnce
         resources:
           requests:
-            storage: 22Gi
+            storage: 12Gi
       source:
         blank: {}
