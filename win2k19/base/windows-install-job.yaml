@@ -13,7 +13,7 @@ spec:
       restartPolicy: Never
       containers:
       - name: ose-cli
-        image: bitnami/kubectl:latest
+        image: nginx:latest
         volumeMounts:
         - name: windows-install-scripts
           mountPath: /scripts
