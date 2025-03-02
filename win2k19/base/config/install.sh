@@ -3,12 +3,8 @@
 echo "Starting install script"
 cd /scripts
 
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-mv kubectl /usr/local/bin/kubectl
-chmod +x /usr/local/bin/kubectl
-
 KC=kubectl
-${KC} get ns kubevirt-os-images >& /dev/null
+${KC} get ns kubevirt-os-images> /dev/null 2>&1 &
 if [ $? == 0 ]
 then
     IMAGES_NS=kubevirt-os-images
