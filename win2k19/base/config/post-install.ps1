@@ -6,16 +6,6 @@ New-item $BasePath -itemtype directory
 Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -name "fDenyTSConnections" -value 0
 Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
 
-# Add RedHat to Trusted Publisher
-$CertName = "balloon.cer"
-$ExportCert = Join-Path $BasePath -ChildPath $CertName
-
-$Cert = (Get-AuthenticodeSignature "e:\Balloon\2k19\amd64\balloon.sys").SignerCertificate
-$ExportType = [System.Security.Cryptography.X509Certificates.X509ContentType]::Cert
-
-[System.IO.File]::WriteAllBytes($ExportCert, $Cert.Export($ExportType))
-Import-Certificate -FilePath $ExportCert -CertStoreLocation Cert:\LocalMachine\Trust
-
 # install Guest Agent
 msiexec /i e:\virtio-win-gt-x64.msi /qn /passive
 
