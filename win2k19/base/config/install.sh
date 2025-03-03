@@ -4,13 +4,8 @@ echo "Starting install script"
 cd /scripts
 
 KC=kubectl
-${KC} get ns kubevirt-os-images> /dev/null 2>&1 &
-if [ $? == 0 ]
-then
-    IMAGES_NS=kubevirt-os-images
-else
-    IMAGES_NS=openshift-virtualization-os-images
-fi
+
+IMAGES_NS=kubevirt-os-images
 
 MYCM=$(${KC} get configmap -o name --sort-by=metadata.creationTimestamp | awk -F / '/windows-install-scripts/ {a=$2} END{ print a }')
 echo "Using ${MYCM}"
