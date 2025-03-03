@@ -29,6 +29,7 @@ spec:
             cdrom:
               bus: scsi
           - name: windows-guest-tools
+            bootOrder: 2
             cdrom:
               bus: scsi
           - name: windows-install-scripts
